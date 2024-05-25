@@ -18,6 +18,9 @@ jobs:
 
     - name: Install Octave
       run: sudo apt-get update && sudo apt-get install -y octave
-
+    
+    - name: List files
+      run: ls ./assignements/Assignement_01/Problem02/
+      
     - name: Run Octave script
       run: octave --silent ./assignements/Assignement_01/Problem02/testing_actions.m
