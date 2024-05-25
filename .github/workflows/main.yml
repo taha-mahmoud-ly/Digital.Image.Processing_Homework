@@ -1,0 +1,8 @@
+            - name: Setup-Octave
+  # You may pin to the exact commit or the version.
+  # uses: repos4u/octave-action@be934114aaeda287be92b19d894769125940ac2b
+  uses: repos4u/octave-action@v1
+  with:
+    # Octave command for executing in GH runner
+    command: # default is disp('Supply any Octave command for executing')
+          
