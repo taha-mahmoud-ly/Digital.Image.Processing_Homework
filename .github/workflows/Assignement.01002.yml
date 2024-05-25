@@ -20,4 +20,4 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y octave
 
     - name: Run Octave script
-      run: octave --negative_image.m
+      run: octave --silent negative_image.m
