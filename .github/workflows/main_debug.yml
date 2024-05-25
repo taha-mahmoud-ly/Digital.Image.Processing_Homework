@@ -1,0 +1,32 @@
+name: Run Octave Script
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-octave:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Octave
+      run: sudo apt-get update && sudo apt-get install -y octave
+
+    - name: List files for debugging
+      run: ls -R
+
+    - name: Run Octave script
+      run: octave --silent ./assignments/Assignment_01/Problem02/your_script.m
+
+    - name: Upload image artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: output-image
+        path: ./assignments/Assignment_01/Problem02/output_image.jpg
