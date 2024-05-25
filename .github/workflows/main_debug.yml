@@ -23,7 +23,7 @@ jobs:
       run: ls -R
 
     - name: Run Octave script
-      run: octave --silent ./assignments/Assignment_01/Problem02/testing_actions.m
+      run: octave --silent ./assignments/Assignment_01/Problem02/negative_image.m
 
     - name: Upload image artifact
       uses: actions/upload-artifact@v2
