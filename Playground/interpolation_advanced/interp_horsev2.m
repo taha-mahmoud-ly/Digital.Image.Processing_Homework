@@ -18,8 +18,9 @@ img = imread('horse.jpg');
 
 
 % Convert image to grayscale
-
+if size(img,3) == 3
 img = rgb2gray(img);
+end
 
 % Get the size of the image
 [rows, cols] = size(img);
@@ -58,12 +59,12 @@ nearest_img = uint8(nearest_img);
 bilinear_img = uint8(bilinear_img);
 bicubic_img = uint8(bicubic_img);
 spline_img = uint8(spline_img);
-
-% Save the images to disk
-imwrite(nearest_img, 'nearest_neighbor.png');
-imwrite(bilinear_img, 'bilinear.png');
-imwrite(bicubic_img, 'bicubic.png');
-imwrite(spline_img, 'spline.png');
+%{
+%Save the images to disk
+imwrite(nearest_img, './output/nearest_neighbor.png');
+imwrite(bilinear_img, './output/bilinear.png');
+imwrite(bicubic_img, './output/bicubic.png');
+imwrite(spline_img, './output/spline.png');
 
 % Display the original and interpolated images
 figure;
@@ -87,3 +88,4 @@ title('Bicubic');
 subplot(2, 3, 5);
 imshow(spline_img);
 title('Spline');
+}%
