@@ -5,10 +5,7 @@
 <a href="https://octave.org" ><img src="https://img.shields.io/badge/GNU_Octave-V_9-b?logoColor=blue&labelColor=blue&color=grey" /> </a>
 <img src="https://img.shields.io/badge/Packages-Image-b" alt="Image Processing"/>
 <img src="https://img.shields.io/badge/Digital_Image_Processing-8A2BE2" alt="Image Processing"/>
-
-
 <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
-<a href="https://discord.gg/XTW52Kt"><img src="https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA" alt="Join Community Badge"/></a>
 <a href="https://twitter.com/taha_ly" ><img src="https://img.shields.io/twitter/follow/taha_ly" /> </a>
 <br>
 
