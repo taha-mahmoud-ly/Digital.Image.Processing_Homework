@@ -13,7 +13,8 @@
 <img src="https://github.com/taha-mahmoud-ly/Digital.Image.Processing_Homework/assets/52387448/4612ff27-f6d0-43db-a81b-973f321a9dcd" width="70" />
 </div>
 
-<h1 align="center">Digital Image Processing</h1>
+<h1 align="center"> Digital Image Processing </h1>
+
 This is a personal repo holds my assignments for the digital image processsing course Spring24.
 MATLAB code is written via **Octave 9** loaded by **image package**. for the major part its readly runable in **MATLAB**, although some work arounds maybe needed (very occasionally).
 
