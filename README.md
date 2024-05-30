@@ -32,4 +32,4 @@ holds my personal experimenting, outside the scope of the course.
       - [Assignement_02](https://github.com/taha-mahmoud-ly/Digital.Image.Processing_Homework/tree/main/assignements/Assignement_02)
     
   - [Playground](https://github.com/taha-mahmoud-ly/Digital.Image.Processing_Homework/tree/main/Playground)
-
+      - [CBC_RBCs_count](https://github.com/taha-mahmoud-ly/Digital.Image.Processing_Homework/tree/main/Playground/CBC_RBCs_count)
