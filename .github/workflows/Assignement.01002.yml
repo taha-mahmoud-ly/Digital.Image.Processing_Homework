@@ -20,7 +20,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y octave
     
     - name: List files
-      run: ls ./assignements/Assignement_01/Problem02/
+      run: ls 
       
     - name: Run Octave script
-      run: octave --silent ./assignements/Assignement_01/Problem02/testing_actions.m
+      run: octave --silent testing_actions.m
