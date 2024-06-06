@@ -1,0 +1,155 @@
+%###############################################################################
+%#Bioengineering.DIP.Spring2024.BY: Dr.Saleh Hussein.
+%#Author: Taha Mahmoud.210100552. email: dr.taha.libya@gmail.com.
+%#Date: 05.06.2024
+%################################################################################
+%#Assignment02: Problem 1.1
+%# custome histogram and histogram equalization
+% extract each layer of the image to a color wise image
+% create a histogram for each layer
+% applay equalization on each histogram
+% map equalized histos to equalized layers
+% combine RGB layers into one final image
+%################################################################################
+clc
+clear all
+close all
+
+img = imread("trees.jpg");
+
+% extract each layer of the image to a color wise image
+% create a histogram for each layer
+% applay equalization on each histogram
+% map equalized histos to equalized layers
+% combine RGB layers into one final image
+
+% creating grayscale images from the RGB layers
+redLayer = img(:,:,1);
+greenLayer = img(:,:,2);
+blueLayer = img(:,:,3);
+
+%display 
+figure;
+subplot(1,4,1)
+imshow(img);
+title('RGB');
+subplot(1,4,2)
+imshow(redLayer)
+title('Red Gray Scale');
+subplot(1,4,3)
+imshow(greenLayer);
+title('Green Gray Scale');
+subplot(1,4,4)
+imshow(blueLayer);
+title('Blue Gray Scale');
+
+
+%##########################################################################
+% reconstruct original image
+%##########################################################################
+
+
+%reconstruct individual equalized channels
+redEqualizedImage = equalizedImage(redLayer);
+greenEqualizedImage = equalizedImage(greenLayer);
+blueEqualizedImage = equalizedImage(blueLayer);
+
+% Combine equalized channels into one image
+equalizedImageRGB = cat(3, redEqualizedImage, greenEqualizedImage, blueEqualizedImage);
+
+% Display original and equalized images
+figure;
+subplot(2,2,1);
+imshow(img);
+title('Original RGB Image');
+
+subplot(2,2,2);
+imshow(equalizedImageRGB);
+title('Equalized RGB Image');
+
+%##########################################################################
+% Display Histograms and Equalized Histograms
+%##########################################################################
+% uncomment 
+
+redHistogram = histogram(redLayer);
+greenHistogram = histogram(greenLayer);
+blueHistogram = histogram(blueLayer);
+
+eqRedHistogram = histogram(redEqualizedImage);
+eqGreenHistogram = histogram(greenEqualizedImage);
+eqBlueHistogram = histogram(blueEqualizedImage);
+
+figure;
+subplot(2,3,1)
+bar(0:255,redHistogram);
+title('Red Channel Histogram');
+subplot(2,3,2)
+bar(0:255,greenHistogram);
+title('Green Channel Histogram');
+subplot(2,3,3)
+bar(0:255,blueHistogram);
+title('Blue Channel Histogram');
+subplot(2,3,4)
+bar(0:255,eqRedHistogram);
+title('Equalized Red Channel Histogram');
+subplot(2,3,5)
+bar(0:255,eqGreenHistogram);
+title('Equalized Green Channel Histogram');
+subplot(2,3,6)
+bar(0:255,eqBlueHistogram);
+title('Equalized Blue Channel Histogram');
+
+
+%##########################################################################
+% Locally defined functions
+%##########################################################################
+
+function equalizedImage = equalizedImage(image)
+    histogram1 = histogram(image);
+    equalizedHistogramValuesArray1 = equalizedHistogramValuesArray(histogram1);
+    reconstructedEqualizedImage1 = reconstructedEqualizedImage(image,equalizedHistogramValuesArray1);
+    equalizedImage = reconstructedEqualizedImage1;
+end    
+
+
+% function Histogram
+% argument image returns a histogramArray object of the image
+
+
+function histogramArray = histogram(image)
+    % initalize histogramArray 
+    histogramArray = zeros(1,256);
+    % iteration through the image pixels
+    for i = 1:numel(image)
+        histogramArray(image(i)+1) = histogramArray(image(i)+1)+1;
+    end
+end 
+
+function equalizedHistogramValuesArray = equalizedHistogramValuesArray(histogram)
+    PDF = histogram/sum(histogram);
+    %check
+    PDF_sum = sum(PDF);
+    disp(['PDF sum = ' num2str(PDF_sum), '.']); % must be 1
+
+    %CDF cumulative sum PDF
+    CDF = cumsum(PDF);
+    %check
+    disp(['CDF = ' num2str(CDF(256)), '.']); % must be 1
+
+
+    % maximum gray level = 255
+    % raw equlaized level = CDF* max gary level
+    eqGL = CDF.*255;
+    % rounding equalized level
+    equalizedHistogramValuesArray = round(eqGL);
+end 
+
+function reconstructedEqualizedImage = reconstructedEqualizedImage(image,equalizedHistogramValuesArray)
+    % Create a mapping function (lookup table) using the equalized histogram
+
+    mapping_function = uint8(equalizedHistogramValuesArray);
+
+    % Apply the mapping function to the original image
+    reconstructedEqualizedImage = mapping_function(double(image) + 1);
+end
